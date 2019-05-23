@@ -1,0 +1,15 @@
+{% extends "layout.html" %}
+{% block body %}
+<table>
+    <tr>
+        <th>List</th>
+        <th>Date</th>
+    </tr>
+    {% for list in lists %}
+    <tr>
+        <td>{{ list.name }}</td>
+        <td>{{ list.date_created }}</td>
+    </tr>
+    {% endfor %}
+</table>
+{% endblock %}
