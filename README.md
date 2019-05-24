@@ -4,7 +4,11 @@ Sovelluksen tarkoituksena on luoda työkalu eri suoratoistopalveluista löytyvie
 
 [Tietokantakaavio](https://github.com/skoskipaa/Katselulista/blob/master/documentation/pictures/tkkaavio.png)
 
-## Heroku
+## User Stories
+
+[User stories](https://github.com/skoskipaa/Katselulista/blob/master/documentation/userstories.md)
+
+## Sovellus Herokussa
 
 [Katselulistasovellus](https://tranquil-tor-18309.herokuapp.com)
 
