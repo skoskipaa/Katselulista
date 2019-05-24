@@ -9,7 +9,7 @@ Nr. 1
 
 Nr. 2
 
-	Käyttäjänä haluan etsiä katselulistaltani sisältöä suoratoistopalvelun perusteella.
+	Käyttäjänä haluan etsiä katselulistaltani sisältöä ohjelman nimen perusteella.
 
 	SELECT * FROM Ohjelma
 	JOIN OhjelmaKatselulista ON OhjelmaKatselulista.ohjelma_id = Ohjelma.id
