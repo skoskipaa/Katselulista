@@ -12,7 +12,7 @@ Nr. 2
 	Käyttäjänä haluan etsiä katselulistaltani sisältöä nimen perusteella.
 
 	SELECT * FROM Ohjelma
-	JOIN OhjelmaKatselulista ON Ohjelmakatselulista_ohjelma_id = Ohjelma.id
+	JOIN OhjelmaKatselulista ON Ohjelmakatselulista.ohjelma_id = Ohjelma.id
 	JOIN Katselulista ON Katselulista.id = OhjelmaKatselulista.katselulista_id
 	WHERE Ohjelma.nimi = 'nimi'
 
