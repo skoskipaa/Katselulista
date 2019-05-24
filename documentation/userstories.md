@@ -9,10 +9,10 @@ Nr. 1
 
 Nr. 2
 
-	Käyttäjänä haluan etsiä katselulistaltani sisältöä nimen perusteella.
+	Käyttäjänä haluan etsiä katselulistaltani sisältöä suoratoistopalvelun perusteella perusteella.
 
 	SELECT * FROM Ohjelma
-	JOIN OhjelmaKatselulista ON Ohjelmakatselulista.ohjelma_id = Ohjelma.id
+	JOIN OhjelmaKatselulista ON OhjelmaKatselulista.ohjelma_id = Ohjelma.id
 	JOIN Katselulista ON Katselulista.id = OhjelmaKatselulista.katselulista_id
-	WHERE Ohjelma.nimi = 'nimi'
+	WHERE Ohjelma.nimi = 'haettava_ohjelma'
 
