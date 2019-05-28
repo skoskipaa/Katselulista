@@ -1,6 +1,9 @@
 from application import app, db
-from flask import redirect, render_template, request, url_for
 from application.lists.models import List
+from application.lists.forms import ListForm
+
+from flask import redirect, render_template, request, url_for
+from flask_login import login_required, current_user
 
 @app.route("/lists", methods=["GET"])
 def lists_index():
@@ -8,12 +11,20 @@ def lists_index():
 
 
 @app.route("/lists/new/")
+@login_required
 def lists_form():
-    return render_template("lists/new.html")
+    return render_template("lists/new.html", form = ListForm())
 
 @app.route("/lists/", methods=["POST"])
+@login_required
 def lists_create():
-    l = List(request.form.get("name"))
+    form = ListForm(request.form)
+
+    if not form.validate():
+        return render_template("lists/new.html", form = form)
+
+    l = List(form.name.data)
+    l.account_id = current_user.id
 
     db.session().add(l)
     db.session().commit()
