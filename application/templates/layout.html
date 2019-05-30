@@ -11,7 +11,8 @@
       <a href="{{ url_for('auth_logout') }}">Log out</a>
     </p>
     {% else %}
-    <a href="{{ url_for('auth_login') }}">Log in</a>
+    <a href="{{ url_for('auth_login') }}">Log in</a><span> or </span>
+    <a href="{{ url_for('auth_register') }}">Create a new account</a>
     {% endif %}
     <ul>
       <li><a href="{{ url_for('lists_index') }}">Show all lists</a></li>
