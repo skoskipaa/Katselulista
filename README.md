@@ -10,5 +10,11 @@ Sovelluksen tarkoituksena on luoda työkalu eri suoratoistopalveluista löytyvie
 
 ## Sovellus Herokussa
 
+Sovelluksessa on nyt kirjautumistoiminto. Kirjautumiseen tarvitaan käyttäjätunnus ja salasana.
+
+Sovellukseen voi luoda uuden käyttäjän tai kokeilla sovellusta valmiilla tunnuksilla. Sovelluksessa on käyttäjät
+'Jaska Jokunen' (käyttäjätunnus: 'jaska', salasana: 'ressu') sekä 'Minni Hiiri' ('minni', 'juusto').
+
 [Katselulistasovellus](https://tranquil-tor-18309.herokuapp.com)
+
 
