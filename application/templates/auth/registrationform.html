@@ -12,6 +12,13 @@
                 {{ form.name }}
             </td>
         </tr>
+        <td>
+            <ul>
+              {% for error in form.name.errors %}
+              <li>{{ error }}</li>
+              {% endfor %}
+            </ul>
+        </td>
         <tr>
             <td>
                 {{ form.username.label }}
@@ -20,6 +27,13 @@
                 {{ form.username }}
             </td>
         </tr>
+        <td>
+            <ul>
+              {% for error in form.username.errors %}
+              <li>{{ error }}</li>
+              {% endfor %}
+            </ul>
+        </td>
         <tr>
             <td>
                 {{ form.password.label }}
@@ -28,8 +42,15 @@
                 {{ form.password }}
             </td>
         </tr>
+        <td>
+            <ul>
+              {% for error in form.password.errors %}
+              <li>{{ error }}</li>
+              {% endfor %}
+            </ul>
+          </td>
         <tr>
-            <td colspan="3">
+            <td colspan="2">
                 <input type="submit" value="Register"/>
             </td>
         </tr>

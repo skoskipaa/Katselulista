@@ -13,7 +13,7 @@ class User(db.Model):
     username = db.Column(db.String(60), nullable=False)
     password = db.Column(db.String(60), nullable=False)
 
-    lists = db.relationship("List", backref='account', lazy=True)
+    lists = db.relationship("Watchlist", backref='account', lazy=True)
     
 
     def __init__(self, name, username, password):

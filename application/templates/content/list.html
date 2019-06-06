@@ -1,0 +1,26 @@
+{% extends "layout.html" %}
+
+{% block body %}
+
+<h2>{{ name }}</h2>
+<table>
+    <tr>
+        <th>Name</th>
+        <th>Length</th>
+        <th>Category</th>
+        <th>Content provider</th>
+    </tr>
+    {% for item in contentlist %}
+    <tr>
+        <td>{{ item.name }}</td>
+        <td>{{ item.length }}</td>
+        <td>{{ item.category }}</td>
+        <td>{{ item.cdn }}</td>
+       
+    </tr>
+    {% endfor %}
+</table>
+<h5>Total length: {{ watchlist_length }} minutes</h5>
+<a href="{{ url_for('content_form', list_id=list_id) }}">Add a show or a movie</a>
+
+{% endblock %}

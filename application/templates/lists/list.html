@@ -3,13 +3,13 @@
 <table>
     <tr>
         <th>Watchlist</th>
-        <th>Date Created</th>
     </tr>
     {% for list in lists %}
     <tr>
-        <td>{{ list.name }}</td>
-        <td>{{ list.date_created }}</td>
+        <td><a href="{{ url_for('content_for_list', list_id=list.id) }}">{{ list.name }}</a></td>
+
     </tr>
     {% endfor %}
 </table>
+<h6>Total length of your watchlists: {{ total_length }} minutes</h6>
 {% endblock %}
