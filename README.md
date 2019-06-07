@@ -4,15 +4,23 @@ Sovelluksen tarkoituksena on luoda työkalu eri suoratoistopalveluista löytyvie
 
 [Tietokantakaavio](https://github.com/skoskipaa/Katselulista/blob/master/documentation/pictures/tkkaavio.png)
 
+## Toiminnot
+
+* Sovellukseen voi luoda käyttäjätunnuksen ja kirjautua. Käyttäjärooleja on vain yksi eli peruskäyttäjä.
+* Kirjautunut käyttäjä voi luoda katselulistoja ja nähdä niiden listauksen.
+* Kirjautunut käyttäjä voi lisätä katselulistoilleen sisältöä ja tarkastella listojensa sisältöä.
+* Kirjautunut käyttäjä voi nimetä listan uudelleen.
+* Katselulista-listausnäkymässä näytetään kaikkien käyttäjän katselulistojen yhteispituus minuutteina. Jokaisen katselulistan kohdalla näytetään listan sisällön yhteispituus minuutteina.
+
 ## User Stories
 
 [User stories](https://github.com/skoskipaa/Katselulista/blob/master/documentation/userstories.md)
 
 ## Sovellus Herokussa
 
-Sovelluksessa on nyt kirjautumistoiminto. Kirjautumiseen tarvitaan käyttäjätunnus ja salasana.
+Sovellukseen kirjautumiseen tarvitaan käyttäjätunnus ja salasana.
 
-Sovellukseen voi luoda uuden käyttäjän tai kokeilla sovellusta valmiilla tunnuksilla. Sovelluksessa on käyttäjät
+Sovellukseen voi joko luoda uuden käyttäjän tai kokeilla sovellusta valmiilla tunnuksilla. Sovelluksessa on käyttäjät
 'Jaska Jokunen' (käyttäjätunnus: 'jaska', salasana: 'ressu') sekä 'Minni Hiiri' ('minni', 'juusto').
 
 [Katselulistasovellus](https://tranquil-tor-18309.herokuapp.com)
