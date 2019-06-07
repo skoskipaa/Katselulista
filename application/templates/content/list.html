@@ -3,7 +3,17 @@
 {% block body %}
 
 <h2>{{ name }}</h2>
-<table>
+<div class="container">
+    <div class="row">
+        <a href="{{ url_for('lists_update', list_id=list_id) }}">Rename this watchlist</a>
+    </div>
+</div>
+<div class="container">
+    <div class="row">
+        <a href="{{ url_for('content_form', list_id=list_id) }}">Add a show or a movie</a>
+    </div>
+</div>
+<table class="table table-striped">
     <tr>
         <th>Name</th>
         <th>Length</th>
@@ -21,6 +31,5 @@
     {% endfor %}
 </table>
 <h5>Total length: {{ watchlist_length }} minutes</h5>
-<a href="{{ url_for('content_form', list_id=list_id) }}">Add a show or a movie</a>
 
 {% endblock %}

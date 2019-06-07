@@ -7,3 +7,9 @@ class ListForm(FlaskForm):
     class Meta:
         csrf = False
 
+class EditForm(FlaskForm):
+    name = StringField("New name", [validators.Length(min=1)])
+
+    class Meta:
+        csrf = False
+

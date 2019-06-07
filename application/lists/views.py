@@ -1,6 +1,7 @@
 from application import app, db
 from application.lists.models import Watchlist
 from application.lists.forms import ListForm
+from application.lists.forms import EditForm
 
 from application.content.models import Content
 
@@ -35,5 +36,25 @@ def lists_create():
 
     return redirect(url_for("lists_index"))
     
+@app.route("/lists/<list_id>/edit", methods=["GET", "POST"])
+@login_required
+def lists_update(list_id):
+    l = Watchlist.query.get(list_id)
+    
+    if request.method == "GET":
+        return render_template("lists/edit.html", form = EditForm(), list_id=list_id, name = l.name)
+
+    if request.method == "POST":
+        form = EditForm(request.form)
+
+        if not form.validate():
+            return render_template("lists/edit.html", form = form)
+
+        l.name = form.name.data
+
+        db.session().add(l)
+        db.session().commit()
+
+        return redirect(url_for("content_for_list", list_id=list_id))
 
 

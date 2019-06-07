@@ -3,9 +3,6 @@ from application.lists.models import Watchlist
 
 from sqlalchemy.sql import text
 
-#list_content = db.Table("list_content",
-#    db.Column("watchlist_id", db.Integer, db.ForeignKey("watchlist.id"), primary_key=True),
- #   db.Column("content_id", db.Integer, db.ForeignKey("content.id"), primary_key=True))
 
 
 class Content(db.Model):
@@ -18,9 +15,8 @@ class Content(db.Model):
     category = db.Column(db.String(30), nullable=False)
     cdn = db.Column(db.String(30), nullable=False)
 
-    watchlist_id = db.Column(db.Integer, db.ForeignKey('watchlist.id'))  # Lisää pakollisuus, kun syöttö listaan onnistuu ...
+    watchlist_id = db.Column(db.Integer, db.ForeignKey('watchlist.id'))
 
-    #list_content = db.relationship("Watchlist", secondary=list_content, backref=db.backref("content", lazy=True))
 
     def __init__(self, name, length, category, cdn): 
         self.name = name
