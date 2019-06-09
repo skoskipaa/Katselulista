@@ -1,6 +1,7 @@
 {% extends "layout.html" %}
 {% block body %}
 <form method="POST" action="{{ url_for('lists_create') }}">
+    <div class="form-group"
     <table>
         <tr>
             <td>
@@ -19,9 +20,10 @@
         </tr>
         <tr>
             <td colspan="2">
-                <input type="submit" value="Add a new watch list"/>
+                <input type="submit" class="btn btn-primary"  value="Add!"/>
             </td>
         </tr>
     </table>
+    </div>
 </form>
 {% endblock %}

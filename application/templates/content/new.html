@@ -3,6 +3,7 @@
 {% block body %}
 <h1>Add a show or a movie</h1>
 <form method="POST" action="{{ url_for('content_create', list_id=list_id) }}">    
+  <div class="form-group">
     <table>
         <tr>
       <td>
@@ -49,6 +50,6 @@
       </td>
         </tr>
     </table>
-
+    </div>
 </form>
 {% endblock %}

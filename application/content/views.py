@@ -3,7 +3,7 @@ from flask import render_template, request, redirect, url_for
 from flask_login import login_required, current_user
 
 from application.content.models import Content
-from application.content.forms import ContentForm
+from application.content.forms import ContentForm, EditContentForm
 
 from application.lists.models import Watchlist 
 
@@ -44,3 +44,43 @@ def content_create(list_id):
     db.session().commit()
 
     return redirect(url_for("content_for_list", list_id = list_id))
+
+
+@app.route("/content/delete/<content_id>", methods=["POST"])
+@login_required
+def content_delete(content_id):
+
+    c = Content.query.get(content_id)
+    l_id = c.watchlist_id
+    db.session().delete(c)
+    db.session().commit()
+
+    return redirect(url_for("content_for_list", list_id = l_id))    
+
+@app.route("/content/<content_id>/edit", methods=["GET", "POST"])
+@login_required
+def content_update(content_id):
+
+    c = Content.query.get(content_id)
+    l_id = c.watchlist_id
+    
+    if request.method == "GET":
+        return render_template("content/edit.html", form = EditContentForm(), content_id=content_id, name=c.name)
+
+    if request.method == "POST":
+        form = EditContentForm(request.form)
+
+        if not form.validate():
+            return render_template("content/edit.html", form = form)
+
+        c.name = form.name.data
+        c.length = form.length.data
+        c.category = form.category.data
+        c.cdn = form.cdn.data
+
+        db.session().add(c)
+        db.session().commit()
+
+        return redirect(url_for("content_for_list", list_id=l_id))
+
+    
