@@ -34,4 +34,14 @@ Nr. 4
 	WHERE Account.id = nn
 	
 
+Nr. 5
 
+	Käyttäjänä haluan nimetä katselulistani uudelleen.
+	
+Nr. 6
+
+	Käyttäjänä haluan poistaa katselulistaltani sisältöä.
+	
+Nr. 7
+
+	Käyttäjänä haluan päivittää katselulistan sisällön tietoja.
