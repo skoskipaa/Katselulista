@@ -12,6 +12,14 @@ Sovelluksen tarkoituksena on luoda työkalu eri suoratoistopalveluista löytyvie
 * Kirjautunut käyttäjä voi nimetä listan uudelleen.
 * Katselulista-listausnäkymässä näytetään kaikkien käyttäjän katselulistojen yhteispituus minuutteina. Jokaisen katselulistan kohdalla näytetään listan sisällön yhteispituus minuutteina.
 
+## Asennus
+
+Alustava [asennusohje](https://github.com/skoskipaa/Katselulista/blob/master/documentation/installation.md)
+
+## Käyttöohje
+
+Alustava [käyttöohje](https://github.com/skoskipaa/Katselulista/blob/master/documentation/instructions.md)
+
 ## User Stories
 
 [User stories](https://github.com/skoskipaa/Katselulista/blob/master/documentation/userstories.md)
