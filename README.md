@@ -10,6 +10,7 @@ Sovelluksen tarkoituksena on luoda työkalu eri suoratoistopalveluista löytyvie
 * Kirjautunut käyttäjä voi luoda katselulistoja ja nähdä niiden listauksen.
 * Kirjautunut käyttäjä voi lisätä katselulistoilleen sisältöä ja tarkastella, päivittää ja poistaa listojensa sisältöä.
 * Kirjautunut käyttäjä voi nimetä listan uudelleen.
+* Kirjautunut käyttäjä voi poistaa katselulistan sisältöineen.
 * Katselulista-listausnäkymässä näytetään kaikkien käyttäjän katselulistojen yhteispituus minuutteina. Jokaisen katselulistan kohdalla näytetään listan sisällön yhteispituus minuutteina.
 
 ## Asennus
