@@ -58,3 +58,18 @@ def lists_update(list_id):
         return redirect(url_for("content_for_list", list_id=list_id))
 
 
+@app.route("/lists/delete/<list_id>", methods=["POST"])
+@login_required
+def lists_delete(list_id):
+
+    l = Watchlist.query.get(list_id)
+    watchlist_content = l.content
+
+    for c in watchlist_content:
+        db.session().delete(c)
+        db.session().commit()
+    
+    db.session().delete(l)
+    db.session().commit()
+
+    return redirect(url_for("lists_index"))

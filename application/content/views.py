@@ -17,8 +17,8 @@ def content_form(list_id):
 @app.route("/content/<list_id>", methods=["GET"])
 @login_required
 def content_for_list(list_id):
-    name = Watchlist.query.filter_by(id=list_id).first()
-    item_name = name.name
+    l = Watchlist.query.get(list_id)
+    item_name = l.name
     contentlist = Content.query.filter_by(watchlist_id = list_id).all()
     return render_template("content/list.html", contentlist = contentlist, name=item_name, list_id = list_id,
         watchlist_length = Content.total_length_of_a_watchlist(list_id))
