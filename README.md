@@ -20,6 +20,8 @@ Sovellukseen voi joko luoda uuden käyttäjän tai kokeilla sovellusta valmiilla
 
 [Katselulistasovellus](https://tranquil-tor-18309.herokuapp.com)
 
+## Havaitut puutteet ja jatkokehitys
+
 ## [Tietokanta](https://github.com/skoskipaa/Katselulista/blob/master/documentation/database.md)
 
 ## [Asennus](https://github.com/skoskipaa/Katselulista/blob/master/documentation/installation.md)
