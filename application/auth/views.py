@@ -1,10 +1,11 @@
-from flask import render_template, request, redirect, url_for
+from flask import render_template, request, redirect, url_for, flash
 from flask_login import login_user, logout_user
 
-from application import app, db
+from application import app, db, bcrypt
 from application.auth.models import User
 from application.auth.forms import LoginForm
 from application.auth.forms import RegisterForm
+from sqlalchemy.exc import IntegrityError
 
 @app.route("/auth/login", methods = ["GET", "POST"])
 def auth_login():
@@ -13,17 +14,29 @@ def auth_login():
 
     form = LoginForm(request.form)
 
-    user = User.query.filter_by(username=form.username.data, password=form.password.data).first()
+    if not form.validate():
+        flash("No such username or password", category="danger")
+        return render_template("auth/loginform.html", form = LoginForm())
+
+    user_found = User.query.filter_by(username=form.username.data).first()
+
+    if user_found:
+        auth_user = bcrypt.check_password_hash(user_found.password, form.password.data)
+        if not auth_user:
+            flash("No such username or password", category="danger")
+            return render_template("auth/loginform.html", form = form)
     
-    if not user:
-        return render_template("auth/loginform.html", form = form, error = "No such username or password")
-    
-    login_user(user)
-    return redirect(url_for("index"))
+        login_user(user_found)
+        return redirect(url_for("index"))
+
+    flash("No such username or password", category="danger")
+    return render_template("auth/loginform.html", form = form)
+
 
 @app.route("/auth/logout")
 def auth_logout():
     logout_user()
+    flash("You have been logged out", category="success")
     return redirect(url_for("index"))
     
 
@@ -38,12 +51,19 @@ def auth_register():
     if not form.validate():
         return render_template("auth/registrationform.html", form = form)
 
-    name = form.name.data
-    username = form.username.data
-    password = form.password.data
+    try:
+        name = form.name.data
+        username = form.username.data
+        password = form.password.data
 
-    u = User(name, username, password)
+        u = User(name, username, password)
 
-    db.session().add(u)
-    db.session().commit()
-    return redirect(url_for("auth_login"))
+        db.session().add(u)
+        db.session().commit()
+
+        flash("New user account created. Please, log in!", category="success")
+        return redirect(url_for("auth_login"))
+
+    except IntegrityError:
+        flash("Username already taken!", category="danger")
+        return render_template("auth/registrationform.html", form = form)

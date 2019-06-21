@@ -1,4 +1,4 @@
-from application import db
+from application import db, bcrypt
 
 class User(db.Model):
 
@@ -10,16 +10,16 @@ class User(db.Model):
                     onupdate=db.func.current_timestamp())
 
     name = db.Column(db.String(60), nullable=False)
-    username = db.Column(db.String(60), nullable=False)
+    username = db.Column(db.String(60), unique=True, nullable=False)
     password = db.Column(db.String(60), nullable=False)
 
-    lists = db.relationship("Watchlist", backref='account', lazy=True)
+    lists = db.relationship("Watchlist", backref="account", lazy=True)
     
 
     def __init__(self, name, username, password):
         self.name = name
         self.username = username
-        self.password = password
+        self.password = bcrypt.generate_password_hash(password).decode("utf-8")
 
     def get_id(self):
         return self.id

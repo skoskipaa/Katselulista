@@ -1,5 +1,5 @@
 from application import app, db
-from flask import render_template, request, redirect, url_for
+from flask import render_template, request, redirect, url_for, flash
 from flask_login import login_required, current_user
 
 from application.content.models import Content
@@ -17,11 +17,11 @@ def content_form(list_id):
 @app.route("/content/<list_id>", methods=["GET"])
 @login_required
 def content_for_list(list_id):
-    l = Watchlist.query.get(list_id)
-    item_name = l.name
+    wl = Watchlist.query.get(list_id)
+    list_name = wl.name
     contentlist = Content.query.filter_by(watchlist_id = list_id).all()
-    return render_template("content/list.html", contentlist = contentlist, name=item_name, list_id = list_id,
-        watchlist_length = Content.total_length_of_a_watchlist(list_id))
+    return render_template("content/list.html", contentlist = contentlist, name=list_name, list_id = list_id,
+        watchlist_length = Content.total_length_of_a_watchlist(list_id)) 
 
 
 @app.route("/content/<list_id>", methods=["POST"])
@@ -30,6 +30,7 @@ def content_create(list_id):
     form = ContentForm(request.form)
 
     if not form.validate():
+        flash("There were some errors. Please, check your input...", category="warning")
         return render_template("content/new.html", form = form, list_id=list_id)
 
     name = form.name.data

@@ -15,7 +15,7 @@ class Content(db.Model):
     category = db.Column(db.String(30), nullable=False)
     cdn = db.Column(db.String(30), nullable=False)
 
-    watchlist_id = db.Column(db.Integer, db.ForeignKey('watchlist.id'))
+    watchlist_id = db.Column(db.Integer, db.ForeignKey("watchlist.id"))
 
 
     def __init__(self, name, length, category, cdn): 
