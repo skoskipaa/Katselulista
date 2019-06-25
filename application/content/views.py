@@ -3,7 +3,7 @@ from flask import render_template, request, redirect, url_for, flash
 from flask_login import login_required, current_user
 
 from application.content.models import Content
-from application.content.forms import ContentForm, EditContentForm
+from application.content.forms import ContentForm
 
 from application.lists.models import Watchlist 
 
@@ -17,7 +17,13 @@ def content_form(list_id):
 @app.route("/content/<list_id>", methods=["GET"])
 @login_required
 def content_for_list(list_id):
-    wl = Watchlist.query.get(list_id)
+    wl = Watchlist.query.get_or_404(list_id)
+    acc = wl.account_id
+
+    if not acc == current_user.id:
+        flash("Access denied. Please, select a watchlist.", category="warning")
+        return redirect(url_for("lists_index"))
+
     list_name = wl.name
     contentlist = Content.query.filter_by(watchlist_id = list_id).all()
     return render_template("content/list.html", contentlist = contentlist, name=list_name, list_id = list_id,
@@ -27,6 +33,14 @@ def content_for_list(list_id):
 @app.route("/content/<list_id>", methods=["POST"])
 @login_required
 def content_create(list_id):
+
+    wl = Watchlist.query.get_or_404(list_id)
+    acc = wl.account_id
+
+    if not acc == current_user.id:
+        flash("Access denied.", category="warning")
+        return redirect(url_for("lists_index"))
+
     form = ContentForm(request.form)
 
     if not form.validate():
@@ -62,14 +76,19 @@ def content_delete(content_id):
 @login_required
 def content_update(content_id):
 
-    c = Content.query.get(content_id)
+    c = Content.query.get_or_404(content_id)
     l_id = c.watchlist_id
     
     if request.method == "GET":
-        return render_template("content/edit.html", form = EditContentForm(), content_id=content_id, name=c.name)
+        form = ContentForm()
+        form.name.data = c.name
+        form.length.data = c.length
+        form.cdn.data = c.cdn
+       
+        return render_template("content/edit.html", form = form, content_id=content_id, name=c.name)
 
     if request.method == "POST":
-        form = EditContentForm(request.form)
+        form = ContentForm(request.form)
 
         if not form.validate():
             return render_template("content/edit.html", form = form)
