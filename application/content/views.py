@@ -85,7 +85,7 @@ def content_update(content_id):
         form.length.data = c.length
         form.cdn.data = c.cdn
        
-        return render_template("content/edit.html", form = form, content_id=content_id, name=c.name)
+        return render_template("content/edit.html", form = form, content_id=content_id, name=c.name, list_id=l_id)
 
     if request.method == "POST":
         form = ContentForm(request.form)
