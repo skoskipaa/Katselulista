@@ -22,7 +22,10 @@
             <a class="nav-link" href="{{ url_for('lists_index') }}">Show my watchlists</a>  
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="{{ url_for('lists_form') }}">Add a new list</a>
+            <a class="nav-link" href="{{ url_for('lists_form') }}">Create a new watchlist</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="{{ url_for('genres_index') }}">Create new genres</a>
           </li>
         </ul>
       </div>
@@ -53,7 +56,7 @@
             {% for category, message in messages %}
               <div class="alert alert-{{ category }} alert-dismissible" role="alert">
               <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-              <!-- <strong>Title</strong> --> {{ message }}
+              {{ message }}
               </div>
             {% endfor %}
           {% endif %}

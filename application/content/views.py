@@ -7,6 +7,8 @@ from application.content.forms import ContentForm
 
 from application.lists.models import Watchlist 
 
+from application.genres.models import Genre
+
 @app.route("/content/<list_id>/new/")
 @login_required
 def content_form(list_id):
@@ -49,12 +51,15 @@ def content_create(list_id):
 
     name = form.name.data
     length = form.length.data
-    category = form.category.data
+    genres = form.category.data
     cdn = form.cdn.data
 
-    c = Content(name, length, category, cdn)
+    c = Content(name, length, cdn)
     c.watchlist_id = list_id
 
+    for g in genres:
+        c.category.append(g)
+   
     db.session().add(c)
     db.session().commit()
 

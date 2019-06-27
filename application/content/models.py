@@ -1,8 +1,12 @@
 from application import db
 from application.lists.models import Watchlist
+from application.genres.models import Genre
 
 from sqlalchemy.sql import text
 
+content_genres = db.Table('content_genres',
+    db.Column('content_id', db.Integer, db.ForeignKey('content.id'), primary_key=True),
+    db.Column('genre_id', db.Integer, db.ForeignKey('genre.id'), primary_key=True))
 
 
 class Content(db.Model):
@@ -12,16 +16,16 @@ class Content(db.Model):
 
     name = db.Column(db.String(100), nullable=False)
     length = db.Column(db.Integer)
-    category = db.Column(db.String(30), nullable=False)
     cdn = db.Column(db.String(30), nullable=False)
+    
+    category = db.relationship('Genre', secondary=content_genres, lazy='subquery', backref=db.backref('content'))      
 
     watchlist_id = db.Column(db.Integer, db.ForeignKey("watchlist.id"))
 
 
-    def __init__(self, name, length, category, cdn): 
+    def __init__(self, name, length, cdn): 
         self.name = name
         self.length = length
-        self.category = category
         self.cdn = cdn
 
     @staticmethod

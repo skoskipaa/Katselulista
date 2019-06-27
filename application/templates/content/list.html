@@ -24,7 +24,7 @@
     <tr>
         <th>Name</th>
         <th>Length</th>
-        <th>Category</th>
+        <th>Genre</th>
         <th>Content provider</th>
         <th></th>
         <th></th>
@@ -33,7 +33,9 @@
     <tr>
         <td>{{ item.name }}</td>
         <td>{{ item.length }}</td>
-        <td>{{ item.category }}</td>
+        <td> {% for genre in item.category %}
+            <body>{{ genre.name }}</body>
+          {% endfor %}</td>
         <td>{{ item.cdn }}</td>
         <td><a href="{{ url_for('content_update', content_id=item.id) }}" class="btn btn-default pull-right">Edit</a></td>
         <td>
