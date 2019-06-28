@@ -5,7 +5,7 @@ from application.lists.forms import EditForm
 
 from application.content.models import Content
 
-from flask import redirect, render_template, request, url_for
+from flask import redirect, render_template, request, url_for, flash
 from flask_login import login_required, current_user
 
 @app.route("/lists", methods=["GET"])
@@ -39,7 +39,13 @@ def lists_create():
 @app.route("/lists/<list_id>/edit", methods=["GET", "POST"])
 @login_required
 def lists_update(list_id):
+
     l = Watchlist.query.get(list_id)
+    acc = l.account_id
+    if not acc == current_user.id:
+        flash("Access denied. Please, select a watchlist.", category="warning")
+        return redirect(url_for("lists_index"))
+
     
     if request.method == "GET":
         return render_template("lists/edit.html", form = EditForm(), list_id=list_id, name = l.name)

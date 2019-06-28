@@ -83,12 +83,20 @@ def content_update(content_id):
 
     c = Content.query.get_or_404(content_id)
     l_id = c.watchlist_id
-    
+
+    wl = Watchlist.query.get_or_404(l_id)
+    acc = wl.account_id
+
+    if not acc == current_user.id:
+        flash("Access denied. Please, select a watchlist.", category="warning")
+        return redirect(url_for("lists_index"))
+
     if request.method == "GET":
         form = ContentForm()
         form.name.data = c.name
         form.length.data = c.length
         form.cdn.data = c.cdn
+        form.category.data = c.category
        
         return render_template("content/edit.html", form = form, content_id=content_id, name=c.name, list_id=l_id)
 
@@ -96,7 +104,8 @@ def content_update(content_id):
         form = ContentForm(request.form)
 
         if not form.validate():
-            return render_template("content/edit.html", form = form)
+            flash("There were some errors. Please, check your input...", category="warning")
+            return render_template("content/edit.html", form = form, content_id=content_id, name = c.name, list_id = l_id)
 
         c.name = form.name.data
         c.length = form.length.data
