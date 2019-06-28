@@ -44,6 +44,9 @@ Nr. 6
 	INSERT INTO Content
 	VALUES (id, date_created, date_modified, name, length, cdn, watchlist_id)
 	
+	INSERT INTO Content_Genre ('content_id', 'genre_id')  
+	VALUES (nn, mm)
+	
 Nr. 7
 
 	Käyttäjänä haluan tietää katselulistan ohjelmien yhteiskeston.
@@ -67,6 +70,9 @@ Nr. 9
 	
 	DELETE FROM Content
 	WHERE id = nn
+	
+	DELETE FROM Content_Genre
+	WHERE content_id = nn
 
 Nr. 10
 
@@ -76,9 +82,16 @@ Nr. 10
 	SET name = 'new name', date_modified = date, length = nn, cdn = 'new cdn'
 	WHERE id = nn
 	
+	UPDATE Content_Genre
+	SET genre_id = mm
+	WHERE content_id = nn
+	
 Nr. 11
 
 	Käyttäjänä haluan poistaa katselulistan ja sen sisällön järjestelmästä.
+	
+	DELETE FROM Content_Genre
+	WHERE content_id = mm
 	
 	DELETE FROM Content
 	JOIN Watchlist ON Content.watchlist_id = Watchlist.id
