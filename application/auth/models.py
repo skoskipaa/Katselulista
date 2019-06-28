@@ -1,5 +1,7 @@
 from application import db, bcrypt
 
+from sqlalchemy.sql import text
+
 class User(db.Model):
 
     __tablename__ = "account"
@@ -33,4 +35,11 @@ class User(db.Model):
     def is_authenticated(self):
         return True
 
+    @staticmethod
+    def user_count():
+        stmt = text("SELECT COUNT(id) FROM Account")
+
+        res = db.engine.execute(stmt)
+
+        return res.scalar()
     

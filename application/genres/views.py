@@ -4,12 +4,19 @@ from flask_login import login_required, current_user
 
 from application.genres.models import Genre
 from application.genres.forms import GenreForm
+from sqlalchemy.exc import IntegrityError
+
 
 @app.route("/genres")
 @login_required
 def genres_index():
     genrelist = Genre.query.all()
     return render_template("genres/list.html", genrelist = genrelist)
+
+@app.route("/genres/new")
+@login_required
+def genres_form():
+    return render_template("genres/new.html", form = GenreForm())
 
 
 @app.route("/genres", methods=["POST"])
@@ -21,16 +28,18 @@ def genres_create():
         flash("Please, check your input...", category="warning")
         return render_template("genres/new.html", form = form)
 
-    name = form.name.data
+    try:
+        name = form.name.data
+        g = Genre(name)
 
-    g = Genre(name)
+        db.session().add(g)
+        db.session().commit()
 
-    db.session().add(g)
-    db.session().commit()
+        flash("New genre created!", category="success")
+        return redirect(url_for("genres_index"))
 
-    return redirect(url_for("genres_index"))
+    except IntegrityError:
+        db.session().rollback()
 
-@app.route("/genres/new")
-@login_required
-def genres_form():
-    return render_template("genres/new.html", form = GenreForm())
+        flash("Genre already exists!", category="danger")
+        return render_template("genres/new.html", form = form)
