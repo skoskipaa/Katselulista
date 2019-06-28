@@ -25,6 +25,7 @@ Tietokannassa on neljä taulua: Account (käyttäjätili), Watchlist (katselulis
       id INTEGER NOT NULL,
       date_created DATETIME,
       name VARCHAR(200) NOT NULL,
+      account_id INTEGER,
       PRIMARY KEY (id),
       FOREIGN KEY (account_id) REFERENCES Account (id)
       )
@@ -38,6 +39,7 @@ Tietokannassa on neljä taulua: Account (käyttäjätili), Watchlist (katselulis
       name VARCHAR(100) NOT NULL,
       length INTEGER,
       cnd VARCHAR(30) NOT NULL,
+      watchlist_id INTEGER,
       PRIMARY KEY (id),
       FOREIGN KEY (watchlist_id) REFERENCES Watchlist (id)
       )
