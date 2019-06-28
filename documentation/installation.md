@@ -2,7 +2,7 @@
 
 ## Sovelluksen asennus paikallisesti
 
-Vaatimuksena Python (vähintään versio 3.5) asennettuna.
+Vaatimuksena Python (vähintään versio 3.5) ja SQLite asennettuna (SQLite on yleensä valmiiksi asennettuna Linux- ja Mac-koneissa).
 
 * Lataa GitHubista ohjelmakoodi ZIP-pakettina linkistä **Clone or download -> Download ZIP**
 * Pura paketti haluamaasi uuteen kansioon omalla koneellasi.
@@ -17,10 +17,10 @@ Vaatimuksena Python (vähintään versio 3.5) asennettuna.
 
 ## Sovelluksen asennus Herokuun
 
-Vaatimuksena Heroku-käyttäjätili, jolle on kirjauduttu (esimerkiksi selaimella).
+Vaatimuksena Heroku-käyttäjätili, jolle on kirjauduttu (esimerkiksi selaimella) sekä Git ja Heroku CLI asennettuna. Lisää tietoa näiden asennuksesta esim. [täältä](https://devcenter.heroku.com/articles/git).
 
 * Mikäli sovellusta ei ole liitetty versionhallintaan, tee se komennolla **git init** juurikansiossa
-(Tee myös commit ja poista ylimääräiset tiedostot versionhallinnasta.)
+(Tee myös commit ja poista ylimääräiset tiedostot versionhallinnasta määrittelemällä ne tiedostossa .gitignore.)
 * Luo Herokuun uusi sovellus komennolla **heroku create** 
 (voit antaa sovellukselle myös valitsemasi nimen komennolla **heroku create _nimi_**. Mikäli nimeä ei määritellä, Heroku nimeää sovelluksen automaattisesti satunnaisella nimellä.)
 * Sovelluksen kansiossa luo yhteys versionhallintaan komennolla **git remote add heroku _sovelluksenosoiteherokussa_**
