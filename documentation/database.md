@@ -69,5 +69,5 @@ Tietokannassa taulujen Watchlist ja Content välillä voisi olla myös monesta m
 
 Genre eli ohjelman kategoria olisi voinut olla myös atribuuttina ohjelmalle (Content), mutta ohjelma voidaan luokitella useampaan genreen, kun genre on omana taulunaan.
 
-Koska sovelluksessa ei ole monnimutkaisia monen taulun hakukyselyitä, indeksointia ei ole erikseen toteutettu. Toiminnot ovat pääasiassa suoraviivaisia listauksia, joten indeksointiin riittää pääavaimen mukainen indeksointi.
+Koska sovelluksessa ei ole monimutkaisia monen taulun hakukyselyitä, indeksointia ei ole erikseen toteutettu. Toiminnot ovat pääasiassa suoraviivaisia listauksia, joten indeksointiin riittää pääavaimen mukainen indeksointi.
 
